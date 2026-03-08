@@ -1,3 +1,12 @@
-export default function Home() {
-  return <h1>Welcome to the Home Page</h1>;
+import { redirect } from "next/navigation";
+import { getAssessment } from "./actions/assessment";
+
+export default async function Home() {
+  const assessment = await getAssessment();
+
+  if (assessment) {
+    redirect("/chat");
+  } else {
+    redirect("/assessment");
+  }
 }
