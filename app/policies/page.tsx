@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getPolicies } from "@/app/actions/policies";
 import { getAssessment } from "@/app/actions/assessment";
+import { PoliciesPageClient } from "@/components/policies/policiesPage";
 
 export default async function PoliciesPage() {
   const assessment = await getAssessment();
@@ -15,9 +16,5 @@ export default async function PoliciesPage() {
     redirect("/chat");
   }
 
-  return (
-    <div className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">Policies Editor</p>
-    </div>
-  );
+  return <PoliciesPageClient policies={allPolicies} />;
 }

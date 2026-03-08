@@ -5,4 +5,4 @@ const groq = createOpenAI({
   baseURL: "https://api.groq.com/openai/v1",
 });
 
-export const model = groq("llama-3.3-70b-versatile");
+export const model = groq.chat("openai/gpt-oss-120b");

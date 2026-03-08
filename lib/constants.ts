@@ -47,3 +47,6 @@ export const STEP_FIELDS: Record<number, (keyof AssessmentFormData)[]> = {
 
 // Policy detection: the AI prefixes generated policies with this marker
 export const POLICY_MARKER = "# Policy:";
+
+// Auto-save debounce delay for the policy editor (ms)
+export const AUTOSAVE_DELAY = 1000;
