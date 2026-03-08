@@ -15,7 +15,17 @@ export const assessmentSchema = z.object({
   primaryActivity: z.string().min(1, "Primary activity is required"),
   shareholders: z
     .array(shareholderSchema)
-    .min(1, "At least one shareholder is required"),
+    .min(1, "At least one shareholder is required")
+    .refine(
+      (shareholders) => {
+        const total = shareholders.reduce(
+          (sum, s) => sum + s.sharePercentage,
+          0,
+        );
+        return Math.round(total * 100) === 10000;
+      },
+      { message: "Total shares must equal 100%" },
+    ),
 });
 
 export type AssessmentFormData = z.infer<typeof assessmentSchema>;

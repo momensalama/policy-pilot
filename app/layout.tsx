@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
         {children}
         <Toaster
-          position="bottom-right"
+          position="top-center"
           toastOptions={{
             className:
               "!bg-card !text-card-foreground !border !border-border !shadow-md",
