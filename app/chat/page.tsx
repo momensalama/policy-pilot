@@ -1,5 +1,8 @@
 import { redirect } from "next/navigation";
 import { getAssessment } from "@/app/actions/assessment";
+import { getMessages } from "@/app/actions/chat";
+import { ChatInterface } from "@/components/chat/chatInterface";
+import type { UIMessage } from "ai";
 
 export default async function ChatPage() {
   const assessment = await getAssessment();
@@ -8,9 +11,21 @@ export default async function ChatPage() {
     redirect("/assessment");
   }
 
+  const dbMessages = await getMessages();
+
+  const initialMessages: UIMessage[] = dbMessages.map((m) => ({
+    id: m.id,
+    role: m.role,
+    content: m.content,
+    parts: [{ type: "text" as const, text: m.content }],
+    createdAt: m.createdAt,
+  }));
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">Chat Interface</p>
-    </div>
+    <ChatInterface
+      companyName={assessment.companyName}
+      assessmentId={assessment.id}
+      initialMessages={initialMessages}
+    />
   );
 }

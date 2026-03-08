@@ -2,6 +2,8 @@ import { AssessmentFormData } from "./validations";
 
 export const ACTIVITY_PREVIEW_LENGTH = 100;
 
+export const MAX_HEIGHT = 160;
+
 export const WIZARD_STEPS = {
   COMPANY_NAME: 0,
   COMPANY_EMAIL: 1,
