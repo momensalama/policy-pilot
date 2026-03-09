@@ -28,7 +28,12 @@ export function WizardNavigation({
       {isFirstStep ? (
         <div />
       ) : (
-        <Button variant="ghost" onClick={goBack} className="gap-2">
+        <Button
+          variant="ghost"
+          onClick={goBack}
+          className="gap-2"
+          disabled={isPending}
+        >
           <ArrowLeft className="h-4 w-4" />
           Back
         </Button>
@@ -47,7 +52,7 @@ export function WizardNavigation({
           )}
         </ShimmerButton>
       ) : (
-        <Button onClick={goNext} className="gap-2">
+        <Button onClick={goNext} className="gap-2" disabled={isPending}>
           Next
           <ArrowRight className="h-4 w-4" />
         </Button>

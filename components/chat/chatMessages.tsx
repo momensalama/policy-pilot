@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import type { UIMessage } from "ai";
 import { MessageBubble } from "./MessageBubble";
+import { TypingAnimation } from "@/components/ui/typing-animation";
 
 interface ChatMessagesProps {
   messages: UIMessage[];
@@ -22,9 +23,14 @@ export function ChatMessages({
   if (messages.length === 0) {
     return (
       <div className="flex flex-1 items-center justify-center p-8">
-        <p className="text-center text-sm text-muted-foreground">
+        <TypingAnimation
+          as="p"
+          className="text-center text-sm text-muted-foreground"
+          duration={50}
+          startOnView={false}
+        >
           Ask a question about your company or request a policy to get started.
-        </p>
+        </TypingAnimation>
       </div>
     );
   }
