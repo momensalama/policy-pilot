@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useChat } from "@ai-sdk/react";
 import { TextStreamChatTransport } from "ai";
 import type { UIMessage } from "ai";
@@ -34,6 +34,23 @@ export function ChatInterface({
   });
 
   const isStreaming = status === "streaming" || status === "submitted";
+  const prevStatusRef = useRef(status);
+
+  useEffect(() => {
+    const wasStreaming =
+      prevStatusRef.current === "streaming" ||
+      prevStatusRef.current === "submitted";
+
+    if (wasStreaming && status === "ready") {
+      // Refocus the textarea after AI finishes responding
+      const textarea = document.querySelector<HTMLTextAreaElement>(
+        "textarea[placeholder]",
+      );
+      textarea?.focus();
+    }
+
+    prevStatusRef.current = status;
+  }, [status]);
 
   const handleSubmit = () => {
     const trimmed = input.trim();
