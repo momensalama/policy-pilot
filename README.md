@@ -2,6 +2,8 @@
 
 A full-stack web app that collects company information through an assessment wizard, then lets you chat with an AI to generate and edit company policies.
 
+**Live Demo:** [policy-pilot.vercel.app](https://policy-pilot.vercel.app)
+
 ## Tech Stack
 
 - Next.js 16, React 19, TypeScript
@@ -75,10 +77,6 @@ Open [http://localhost:3000](http://localhost:3000) — you'll be taken to the a
 | `npm run db:generate` | Generate Drizzle migrations |
 | `npm run db:migrate`  | Run migrations              |
 | `npm run db:studio`   | Open Drizzle Studio         |
-
-## Live Demo
-
-[policy-pilot.vercel.app](https://policy-pilot.vercel.app)
 
 ## Deployment
 
