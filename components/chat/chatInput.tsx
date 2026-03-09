@@ -39,6 +39,7 @@ export function ChatInput({
       <div className="mx-auto flex max-w-3xl items-end gap-2 p-4">
         <textarea
           ref={textareaRef}
+          autoFocus
           value={value}
           onChange={(e) => {
             onChange(e.target.value);

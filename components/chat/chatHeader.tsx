@@ -51,7 +51,7 @@ export function ChatHeader({
       <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <Building2 className="h-4 w-4 text-primary" />
-          <h1 className="text-sm font-semibold truncate max-w-[160px] sm:max-w-none">
+          <h1 className="text-sm font-semibold truncate max-w-40 sm:max-w-none">
             {companyName}
           </h1>
         </div>

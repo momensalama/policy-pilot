@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
+import { TextStreamChatTransport } from "ai";
 import type { UIMessage } from "ai";
 import toast from "react-hot-toast";
 
@@ -16,7 +16,7 @@ interface ChatInterfaceProps {
   initialMessages: UIMessage[];
 }
 
-const transport = new DefaultChatTransport({ api: "/api/chat" });
+const transport = new TextStreamChatTransport({ api: "/api/chat" });
 
 export function ChatInterface({
   companyName,

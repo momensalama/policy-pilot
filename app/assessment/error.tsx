@@ -1,0 +1,29 @@
+"use client";
+
+import { useEffect } from "react";
+import { AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+interface ErrorPageProps {
+  error: Error & { digest?: string };
+  reset: () => void;
+}
+
+export default function AssessmentError({ error, reset }: ErrorPageProps) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-4">
+      <AlertCircle className="h-10 w-10 text-destructive" />
+      <h2 className="text-lg font-semibold">Failed to load assessment</h2>
+      <p className="text-sm text-muted-foreground text-center max-w-md">
+        Could not connect to the database. Make sure PostgreSQL is running.
+      </p>
+      <Button onClick={reset} variant="outline">
+        Try again
+      </Button>
+    </div>
+  );
+}
