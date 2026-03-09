@@ -5,6 +5,8 @@ import { getMessages } from "@/app/actions/chat";
 import { ChatInterface } from "@/components/chat/chatInterface";
 import type { UIMessage } from "ai";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Chat",
   description:

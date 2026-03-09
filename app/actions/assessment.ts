@@ -40,7 +40,8 @@ export async function createAssessment(data: AssessmentFormData) {
     );
   }
 
-  revalidatePath("/");
+  revalidatePath("/assessment");
+  revalidatePath("/chat");
   return assessment;
 }
 
@@ -71,11 +72,13 @@ export async function updateAssessment(id: string, data: AssessmentFormData) {
     );
   }
 
-  revalidatePath("/");
+  revalidatePath("/assessment");
+  revalidatePath("/chat");
 }
 
 export async function deleteAssessment(id: string) {
   // Cascade delete handles shareholders
   await db.delete(assessments).where(eq(assessments.id, id));
-  revalidatePath("/");
+  revalidatePath("/assessment");
+  revalidatePath("/chat");
 }

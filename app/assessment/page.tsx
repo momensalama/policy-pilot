@@ -4,6 +4,8 @@ import { getAssessment } from "@/app/actions/assessment";
 import { AssessmentWizard } from "@/components/assessment/assessmentWizard";
 import { DotPattern } from "@/components/ui/dot-pattern";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Company Assessment",
   description:
