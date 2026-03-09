@@ -166,7 +166,8 @@
   }
 
   ::selection {
-    background: rgba(0, 0, 0, 0.2);
+    background: oklch(0.65 0.15 250);
+    color: white;
   }
 
   ::-webkit-scrollbar {
