@@ -62,7 +62,7 @@ export function StepContent({
         <Field label="Company location" error={errors.companyLocation}>
           <Input
             autoFocus
-            placeholder="Riyadh, Saudi Arabia"
+            placeholder="Qatar, Doha"
             value={formData.companyLocation}
             onChange={(e) => updateField("companyLocation", e.target.value)}
             onKeyDown={onEnter}

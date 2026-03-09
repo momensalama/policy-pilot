@@ -17,9 +17,39 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Policy Pilot - AI-Powered Company Policy Generator",
+  title: {
+    default: "Policy Pilot - AI-Powered Company Policy Generator",
+    template: "%s | Policy Pilot",
+  },
   description:
-    "Generate company policies and get AI-powered guidance based on your company's information.",
+    "Collect company information through a guided assessment, then use AI to generate tailored company policies. Built with Next.js, PostgreSQL, and Groq.",
+  keywords: [
+    "company policy generator",
+    "AI policy",
+    "assessment wizard",
+    "policy management",
+    "Groq AI",
+  ],
+  authors: [{ name: "Momen Salama" }],
+  openGraph: {
+    title: "Policy Pilot - AI-Powered Company Policy Generator",
+    description:
+      "Collect company information through a guided assessment, then use AI to generate tailored company policies.",
+    url: "https://policy-pilot.vercel.app",
+    siteName: "Policy Pilot",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Policy Pilot - AI-Powered Company Policy Generator",
+    description:
+      "Collect company information through a guided assessment, then use AI to generate tailored company policies.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

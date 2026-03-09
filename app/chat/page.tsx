@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getAssessment } from "@/app/actions/assessment";
 import { getMessages } from "@/app/actions/chat";
 import { ChatInterface } from "@/components/chat/chatInterface";
 import type { UIMessage } from "ai";
+
+export const metadata: Metadata = {
+  title: "Chat",
+  description:
+    "Ask questions about your company and generate tailored policies using AI.",
+};
 
 export default async function ChatPage() {
   const assessment = await getAssessment();

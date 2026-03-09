@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getAssessment } from "@/app/actions/assessment";
 import { AssessmentWizard } from "@/components/assessment/assessmentWizard";
 import { DotPattern } from "@/components/ui/dot-pattern";
+
+export const metadata: Metadata = {
+  title: "Company Assessment",
+  description:
+    "Complete a guided assessment to provide your company details — name, email, location, shareholders, and primary activity.",
+};
 
 interface AssessmentPageProps {
   searchParams: Promise<{ edit?: string }>;

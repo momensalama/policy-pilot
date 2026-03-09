@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Policy Pilot
+
+A full-stack web app that collects company information through an assessment wizard, then lets you chat with an AI to generate and edit company policies.
+
+## Tech Stack
+
+- Next.js 16, React 19, TypeScript
+- PostgreSQL with Drizzle ORM
+- Tailwind CSS v4, shadcn/ui, Framer Motion
+- Groq AI (via Vercel AI SDK)
+- Tiptap for the policy editor
+- Docker for the database
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- Docker
+- A [Groq](https://console.groq.com) API key
+
+### Setup
+
+1. Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/momensalama/policy-pilot.git
+cd policy-pilot
+npm install
+```
+
+2. Copy the env file and add your Groq API key:
+
+```bash
+cp .env.example .env.local
+```
+
+Then open `.env.local` and replace `gsk_...` with your actual key. I used Groq because it has a free tier, but you can swap it with an OpenAI key if you prefer. The app uses the Vercel AI SDK so switching providers is straightforward.
+
+3. Start the database:
+
+```bash
+docker compose up -d
+```
+
+4. Run migrations:
+
+```bash
+npm run db:generate
+npm run db:migrate
+```
+
+5. Start the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) — you'll be taken to the assessment wizard.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Assessment** - A step-by-step wizard collects your company name, email, location, shareholders, and primary activity. All data is saved to PostgreSQL.
 
-## Learn More
+2. **Chat** — Once the assessment is done, you land on a ChatGPT-style interface. The AI knows your company details and can answer questions or generate policies. You can also edit or delete your assessment from here.
 
-To learn more about Next.js, take a look at the following resources:
+3. **Policies** — Generated policies show up on the Policies page in a Tiptap editor where you can edit, format, and delete them. Changes auto-save.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Command               | Description                 |
+| --------------------- | --------------------------- |
+| `npm run dev`         | Start dev server            |
+| `npm run build`       | Production build            |
+| `npm run db:generate` | Generate Drizzle migrations |
+| `npm run db:migrate`  | Run migrations              |
+| `npm run db:studio`   | Open Drizzle Studio         |
 
-## Deploy on Vercel
+## Live Demo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[policy-pilot.vercel.app](https://policy-pilot.vercel.app)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The app is deployed on Vercel with Neon for the database.
+
+1. Create a free PostgreSQL database on [Neon](https://neon.tech)
+2. Run migrations against it:
+   ```bash
+   DATABASE_URL="your-neon-connection-string" npm run db:migrate
+   ```
+3. Import the repo on [Vercel](https://vercel.com) and add these environment variables:
+   - `DATABASE_URL` — your Neon connection string
+   - `GROQ_API_KEY` — your Groq API key
+4. Deploy
