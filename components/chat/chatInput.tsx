@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MAX_HEIGHT } from "@/lib/constants";
@@ -10,6 +10,7 @@ interface ChatInputProps {
   onChange: (value: string) => void;
   onSubmit: () => void;
   disabled?: boolean;
+  inputRef?: React.RefObject<HTMLTextAreaElement | null>;
 }
 
 export function ChatInput({
@@ -17,15 +18,17 @@ export function ChatInput({
   onChange,
   onSubmit,
   disabled,
+  inputRef,
 }: Readonly<ChatInputProps>) {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const localRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = inputRef ?? localRef;
 
-  const autoResize = useCallback(() => {
+  const autoResize = () => {
     const el = textareaRef.current;
     if (!el) return;
     el.style.height = "auto";
     el.style.height = `${Math.min(el.scrollHeight, MAX_HEIGHT)}px`;
-  }, []);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {

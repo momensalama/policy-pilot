@@ -58,12 +58,12 @@ export function ChatHeader({
 
         <div className="flex items-center gap-1">
           <Button
-            variant="ghost"
-            size="icon"
+            variant="outline"
+            size="sm"
             onClick={() => router.push("/policies")}
-            title="View Policies"
           >
             <FileText className="h-4 w-4" />
+            Policies
           </Button>
 
           <Button

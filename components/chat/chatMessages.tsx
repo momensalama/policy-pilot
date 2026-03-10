@@ -3,16 +3,20 @@
 import { useEffect, useRef } from "react";
 import type { UIMessage } from "ai";
 import { MessageBubble } from "./MessageBubble";
-import { TypingAnimation } from "@/components/ui/typing-animation";
+import { ChatWelcome } from "./chatWelcome";
 
 interface ChatMessagesProps {
   messages: UIMessage[];
   isStreaming: boolean;
+  companyName: string;
+  onSuggestionClick: (prompt: string) => void;
 }
 
 export function ChatMessages({
   messages,
   isStreaming,
+  companyName,
+  onSuggestionClick,
 }: Readonly<ChatMessagesProps>) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -22,16 +26,10 @@ export function ChatMessages({
 
   if (messages.length === 0) {
     return (
-      <div className="flex flex-1 items-center justify-center p-8">
-        <TypingAnimation
-          as="p"
-          className="text-center text-sm text-muted-foreground"
-          duration={50}
-          startOnView={false}
-        >
-          Ask a question about your company or request a policy to get started.
-        </TypingAnimation>
-      </div>
+      <ChatWelcome
+        companyName={companyName}
+        onSuggestionClick={onSuggestionClick}
+      />
     );
   }
 

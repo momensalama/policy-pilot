@@ -24,6 +24,7 @@ export function ChatInterface({
   initialMessages,
 }: Readonly<ChatInterfaceProps>) {
   const [input, setInput] = useState("");
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const { messages, sendMessage, status } = useChat({
     messages: initialMessages,
@@ -42,11 +43,7 @@ export function ChatInterface({
       prevStatusRef.current === "submitted";
 
     if (wasStreaming && status === "ready") {
-      // Refocus the textarea after AI finishes responding
-      const textarea = document.querySelector<HTMLTextAreaElement>(
-        "textarea[placeholder]",
-      );
-      textarea?.focus();
+      inputRef.current?.focus();
     }
 
     prevStatusRef.current = status;
@@ -63,13 +60,22 @@ export function ChatInterface({
     <div className="flex h-screen flex-col">
       <ChatHeader companyName={companyName} assessmentId={assessmentId} />
 
-      <ChatMessages messages={messages} isStreaming={status === "submitted"} />
+      <ChatMessages
+        messages={messages}
+        isStreaming={status === "submitted"}
+        companyName={companyName}
+        onSuggestionClick={(prompt) => {
+          setInput(prompt);
+          inputRef.current?.focus();
+        }}
+      />
 
       <ChatInput
         value={input}
         onChange={setInput}
         onSubmit={handleSubmit}
         disabled={isStreaming}
+        inputRef={inputRef}
       />
     </div>
   );
