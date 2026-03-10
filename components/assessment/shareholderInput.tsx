@@ -83,6 +83,7 @@ export function ShareholderInput({
               <Input
                 placeholder="Shareholder name"
                 value={s.name}
+                autoFocus
                 onChange={(e) => updateName(i, e.target.value)}
               />
             </div>

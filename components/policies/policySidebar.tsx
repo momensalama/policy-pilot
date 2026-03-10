@@ -57,9 +57,16 @@ export function PolicySidebar({
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: i * 0.05 }}
         >
-          <button
-            type="button"
+          <div
+            role="button"
+            tabIndex={0}
             onClick={() => onSelect(policy.id)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onSelect(policy.id);
+              }
+            }}
             className={cn(
               "group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors cursor-pointer border-0 bg-transparent",
               selectedId === policy.id
@@ -103,7 +110,7 @@ export function PolicySidebar({
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
-          </button>
+          </div>
         </motion.div>
       ))}
     </nav>
