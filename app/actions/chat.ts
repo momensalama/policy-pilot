@@ -3,6 +3,7 @@
 import { db } from "@/db";
 import { messages, policies } from "@/db/schema";
 import { extractPolicyTitle } from "@/lib/policy-tools";
+import { revalidatePath } from "next/cache";
 
 export async function getMessages() {
   return db.query.messages.findMany({
@@ -21,6 +22,7 @@ export async function saveAssistantMessage(content: string) {
   const policyTitle = extractPolicyTitle(content);
   if (policyTitle) {
     await db.insert(policies).values({ title: policyTitle, content });
+    revalidatePath("/policies");
   }
 }
 
