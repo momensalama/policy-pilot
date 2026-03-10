@@ -4,6 +4,8 @@ import { getPolicies } from "@/app/actions/policies";
 import { getAssessment } from "@/app/actions/assessment";
 import { PoliciesPageClient } from "@/components/policies/policiesPage";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Policies",
   description:
