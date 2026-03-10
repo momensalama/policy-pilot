@@ -23,7 +23,7 @@ export function MessageBubble({ message }: Readonly<{ message: UIMessage }>) {
     >
       <div
         className={cn(
-          "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed",
+          "max-w-[85%] min-w-0 rounded-2xl px-4 py-2.5 text-sm leading-relaxed overflow-hidden",
           isUser
             ? "bg-primary text-primary-foreground"
             : "bg-muted text-foreground",
@@ -33,7 +33,7 @@ export function MessageBubble({ message }: Readonly<{ message: UIMessage }>) {
           <div className="whitespace-pre-wrap break-words">{text}</div>
         ) : (
           <div
-            className="prose prose-sm max-w-none break-words
+            className="prose prose-sm max-w-none break-words overflow-x-auto
                 prose-headings:font-semibold prose-headings:mt-3 prose-headings:mb-1
                 prose-p:my-1 prose-p:leading-relaxed
                 prose-ul:my-1 prose-ul:pl-4 prose-li:my-0.5
@@ -41,7 +41,8 @@ export function MessageBubble({ message }: Readonly<{ message: UIMessage }>) {
                 prose-code:rounded prose-code:bg-black/10 prose-code:px-1 prose-code:py-0.5 prose-code:text-xs
                 prose-pre:rounded-lg prose-pre:bg-black/10 prose-pre:p-3 prose-pre:text-xs prose-pre:overflow-x-auto
                 prose-strong:font-semibold
-                prose-hr:my-2"
+                prose-hr:my-2
+                prose-table:block prose-table:overflow-x-auto prose-table:text-xs"
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkBreaks]}
