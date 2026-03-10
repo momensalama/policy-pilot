@@ -34,7 +34,7 @@ export function ChatMessages({
   }
 
   return (
-    <div className="flex-1 overflow-y-auto p-4">
+    <div className="min-h-0 flex-1 overflow-y-auto p-4">
       <div className="mx-auto max-w-3xl space-y-4">
         {messages.map((message) => (
           <MessageBubble key={message.id} message={message} />

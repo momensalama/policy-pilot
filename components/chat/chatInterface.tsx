@@ -57,7 +57,7 @@ export function ChatInterface({
   };
 
   return (
-    <div className="flex h-screen flex-col overflow-x-hidden">
+    <div className="flex h-dvh flex-col overflow-hidden">
       <ChatHeader companyName={companyName} assessmentId={assessmentId} />
 
       <ChatMessages

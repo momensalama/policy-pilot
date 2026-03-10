@@ -52,7 +52,7 @@ export function ChatWelcome({
   onSuggestionClick,
 }: Readonly<ChatWelcomeProps>) {
   return (
-    <div className="flex flex-1 items-center justify-center overflow-y-auto p-6">
+    <div className="flex min-h-0 flex-1 items-center justify-center overflow-y-auto p-6">
       <div className="w-full max-w-2xl space-y-8">
         <motion.div
           className="flex flex-col items-center gap-4 text-center"
